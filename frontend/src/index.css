@@ -11,8 +11,16 @@
     text-decoration: none;
     color:inherit;
   }
-  
+  hr{
+    border: none;
+    height: 1px;
+    background-color: #a9a9a9;
+}
   .app{
     width : 80%;
     margin: auto;
   }
+
+  .app-content{
+    display: flex;
+}
