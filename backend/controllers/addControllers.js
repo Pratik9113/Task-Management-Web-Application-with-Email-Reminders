@@ -24,7 +24,7 @@ const addTask = async(req,res) =>{
 const listItem = async (req, res) => {
     const { userId } = req.user; // Assumes userId is set in req.user
     try {
-        const tasks = await addModel.findOne({ userId });
+        const tasks = await addModel.find({ userId });
         return res.json({ success: true, data: tasks });
     } catch (error) {
         console.log(error);

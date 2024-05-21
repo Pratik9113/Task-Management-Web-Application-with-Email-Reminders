@@ -34,15 +34,14 @@ const List = () => {
                     <b>deadline</b>
 
                 </div>
-                {list.map((item, index) => {
-                    return (
-                        <div key={index} className="list-table-format">
-                            <p>{item.title}</p>
-                            <p>{item.description} </p>
-                            <p>{item.deadline}</p>
-                        </div>
-                    )
-                })}
+                {list.length > 0 && list.map((item, index) => (
+                    <div key={index} className="list-table-format">
+                        <p>{item.title}</p>
+                        <p>{item.description}</p>
+                        <p>{item.deadline}</p>
+                    </div>
+                ))}
+
             </div>
         </div>
     )
