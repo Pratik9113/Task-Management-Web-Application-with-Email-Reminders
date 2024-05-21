@@ -37,9 +37,6 @@ const listItem = async (req, res) => {
 const removeItem = async (req, res) => {
     const { taskId } = req.params;
     const { userId } = req.user;
-
-    console.log("Received request to delete task:", taskId, "for user:", userId);
-
     try {
         const task = await addModel.findByIdAndDelete(taskId);
         if (task) {
@@ -55,4 +52,28 @@ const removeItem = async (req, res) => {
     }
 };
 
-export {addTask,listItem, removeItem};
+
+const updateItem = async(req,res) =>{
+    const {taskId} = req.params;
+    const {userId} = req.user;
+    const {title,description,deadline}  = req.body;
+    try {
+        const updatedItem = await addModel.findOneAndUpdate(
+            { _id: taskId, userId: userId },
+            { title, description, deadline }, 
+            { new: true }
+        );
+        if(updatedItem){
+            console.log("task successfuly updated " , taskId);
+            return res.json({success:true, message : "update successfully "})
+        }else {
+            console.error("Task not update or unauthorized:", taskId);
+            return res.json({ success: false, message: "Task not update or unauthorized" });
+        }
+    } catch (error) {
+        console.log("Error in update Item :", error);
+        return res.status(500).json({ success: false, message: "Unsuccessful" });
+    }
+
+}
+export {addTask,listItem, removeItem , updateItem};

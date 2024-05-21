@@ -1,6 +1,6 @@
 .list-table-format{
     display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr;
+    grid-template-columns: 1fr 2fr 2fr 1fr 2fr;
     align-items: center;
     gap : 10px;
     padding: 12px 15px;
@@ -17,5 +17,14 @@
 }
 
 .list-table-format .cursor{
+    cursor: pointer;
+}
+.list-button{
+    background: transparent;
+    font-size: 16px;
+    color : blue;
+    border : 1px solid palevioletred;
+    padding: 10px 30px;
+    border-radius: 50px;
     cursor: pointer;
 }
