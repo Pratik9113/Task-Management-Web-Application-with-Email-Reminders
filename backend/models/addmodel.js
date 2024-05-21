@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
 const addSchema = new mongoose.Schema({
+    userId:{type:String,required:true},
     title :{type:String, required:true},
     description :{type:String, required:true},
-    deadline :{type:String, required:true},
-    cartData : {type : Object, default : {}}
-},{minimize:false})
+    deadline :{type:String, required:true}
+},{timestamps:true})
 
-const addModel = mongoose.models.add ||  mongoose.model("add",addSchema)
+const addModel =  mongoose.model("add",addSchema)
 
 export default addModel;

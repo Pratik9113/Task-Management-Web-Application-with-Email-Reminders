@@ -1,4 +1,5 @@
 import addModel from "../models/addmodel.js";
+
 const addTask = async(req,res) =>{
     const { title, description, deadline } = req.body;
 
@@ -6,29 +7,32 @@ const addTask = async(req,res) =>{
         return res.status(400).json({ success: false, message: "Missing required fields" });
     }
 
-    const task = new addModel({
-        title,
-        description,
-        deadline,
+    const newTask = new addModel({
+        userId : req.user.id,
+        title : req.body.title,
+        description : req.body.description,
+        deadline : req.body.deadline
     });
     try {
-        await task.save();
-        res.json({success:true, message : "taskadded"})
+        const saved = await newTask.save();
+        res.status(200).json({ success: true, message: "Task added successfully", data: saved });
     } catch (error) {
-        console.log(error)
-        res.json({success : false,message:"error"})
+        console.error(error);
+        res.status(500).json({ success: false, message: "Internal server error" });
     }
 }
 
-const listTask = async(req,res)=> {
-    const {userId} = req.params;
+const listItem = async(req,res) =>{
+    const userId  = req.user.id
     try {
-        const task = await addModel.find({userId})
-        res.json({success:true,data :task});
+        const task = await addModel.find({userId});
+        res.json({success:true,data:task})
     } catch (error) {
         console.log(error)
-        res.json({success : false,message:"error"})
+        res.json({success:false,message:"error"})
     }
+
 }
 
-export {addTask,listTask}
+
+export {addTask,listItem};
