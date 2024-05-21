@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ToastContainer } from 'react-toastify';
 import Navbar from './components/Navbar/Navbar'
+import 'react-toastify/dist/ReactToastify.css';
 import Login_Signup from './components/Login_SignUp/Login_Signup';
 import { Routes, Route } from 'react-router-dom';
 import Add from './pages/Add/Add';
@@ -12,6 +13,7 @@ function App() {
     <>
       {showLogin ? <Login_Signup setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
+        <ToastContainer />
         <Navbar setShowLogin={setShowLogin} />
         <hr />
         <div className="app-content">
@@ -22,7 +24,6 @@ function App() {
           </Routes>
         </div>
       </div>
-
     </>
   )
 }

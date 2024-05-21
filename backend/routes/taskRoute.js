@@ -1,8 +1,8 @@
 import express from "express";
-import { addTask ,listItem} from "../controllers/addControllers.js";
-import authMiddleware from '../middleware/auth.js'
+import { addTask, listItem } from "../controllers/addControllers.js";
+import { jwtAuth } from "../middleware/auth.js";
 const taskRouter = express.Router();
 
-taskRouter.post("/add",authMiddleware, addTask);
-taskRouter.post("/list",authMiddleware,listItem);
+taskRouter.post("/add",jwtAuth, addTask);
+taskRouter.get("/list",jwtAuth,listItem);
 export default taskRouter;

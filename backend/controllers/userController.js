@@ -17,10 +17,19 @@ const loginUser = async (req, res) => {
             return res.status(401).json({ success: false, message: "Invalid password" });
         }
 
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
-        res.status(200).cookie('access_token', token, {
-            httpOnly: true,
-        }).json({ success: true, userId : user._id, token });
+        const token = jwt.sign({ userId: user._id }, process.env.SECRET, {
+            expiresIn: '12h'
+        });
+
+        // Set the JWT token as a cookie
+        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none' });
+
+        // Send the status and success message
+        return res.status(200).json({
+            success: true,
+            message: 'User login successfulyl',
+            token: token
+        });
     } catch (error) {
         console.error("Login Error:", error);
         res.status(500).json({ success: false, message: "Internal server error" });
@@ -52,8 +61,19 @@ const registerUser = async (req, res) => {
         });
 
         const user = await newUser.save();
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
-        res.status(201).json({ success: true, token });
+        const token = jwt.sign({ userId: user._id }, process.env.SECRET, {
+            expiresIn: '12h'
+        });
+
+        // Set the JWT token as a cookie
+        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none' });
+
+        // Send the status and success message
+        return res.status(200).json({
+            success: true,
+            message: 'User signup successful',
+            token: token
+        });
     } catch (error) {
         console.error("Registration Error:", error);
         res.status(500).json({ success: false, message: "Internal server error" });

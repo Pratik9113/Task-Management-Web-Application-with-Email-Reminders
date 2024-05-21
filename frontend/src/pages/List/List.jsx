@@ -6,9 +6,13 @@ import { StoreContext } from '../../context/StoreContext';
 const List = () => {
     const [list, setList] = useState([]);
     const { url } = useContext(StoreContext);
-    // const url = "http://localhost:4000";
     const fetchList = async () => {
-        const response = await axios.get(`${url}/api/task/list`)
+        const response = await axios.get(`${url}/api/task/list`,
+            {
+                withCredentials: true,
+                headers: { "Content-Type": "application/json" },
+            }
+        );
         if (response.data.success) {
             setList(response.data.data);
         } else {
@@ -45,3 +49,4 @@ const List = () => {
 }
 
 export default List
+

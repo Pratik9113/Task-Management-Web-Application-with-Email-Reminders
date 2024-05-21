@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const addSchema = new mongoose.Schema({
-    userId:{type:String,required:true},
+    userId:{type:String},
     title :{type:String, required:true},
     description :{type:String, required:true},
     deadline :{type:String, required:true}

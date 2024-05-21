@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors";
 import { connectDB } from "./config/db.js";
+import cookieParser from "cookie-parser";
 import userRouter from "./routes/userRoute.js";
 import taskRouter from "./routes/taskRoute.js";
 import 'dotenv/config'
@@ -8,11 +9,13 @@ const app = express();
 const port = 4000
 const corsOptions = {
     origin: 'http://localhost:5173',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+    optionsSuccessStatus: 200,
+    credentials : true
 };
-app.use(cors(corsOptions));
-app.use(express.json());
 
+app.use(express.json());
+app.use(cors(corsOptions));
+app.use(cookieParser());
 connectDB();
 
 
