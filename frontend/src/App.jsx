@@ -9,6 +9,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import List from './pages/List/List';
 function App() {
   const [showLogin, setShowLogin] = useState(false);
+  const [showUpdate, setUpdateList] = useState(false);
   return (
     <>
       {showLogin ? <Login_Signup setShowLogin={setShowLogin} /> : <></>}
@@ -20,7 +21,7 @@ function App() {
           <Sidebar />
           <Routes>
             <Route path='/add' element={<Add />}></Route>
-            <Route path='/list' element={<List />}></Route>
+            <Route path='/list' element={<List setUpdateList={setUpdateList} />}></Route>
           </Routes>
         </div>
       </div>

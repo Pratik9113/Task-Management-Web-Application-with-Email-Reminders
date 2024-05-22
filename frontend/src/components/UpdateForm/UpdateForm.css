@@ -1,0 +1,50 @@
+.update {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.update-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+}
+
+.update-title {
+    margin:5px;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    color: black;
+}
+.update-text{
+    font-weight: 500;
+}
+
+.update-input {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.update-input input {
+    outline: none;
+    border: 1px solid #c9c9c9;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.update-container button {
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    color: white;
+    background-color: red;
+    font-size: 15px;
+    cursor: pointer;
+}

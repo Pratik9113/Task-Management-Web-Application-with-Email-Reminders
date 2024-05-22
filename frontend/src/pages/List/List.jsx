@@ -1,28 +1,28 @@
-import React, { useContext, useEffect, useState } from 'react'
-import './List.css'
+import React, { useContext, useEffect, useState } from 'react';
+import './List.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { StoreContext } from '../../context/StoreContext';
 import { assets } from '../../assets/assets';
 import UpdateForm from '../../components/UpdateForm/UpdateForm';
+
 const List = () => {
     const [list, setList] = useState([]);
     const [showUpdateForm, setShowUpdateForm] = useState(false);
     const [selectedTask, setSelectedTask] = useState(null);
     const { url } = useContext(StoreContext);
+
     const fetchList = async () => {
-        const response = await axios.get(`${url}/api/task/list`,
-            {
-                withCredentials: true,
-                headers: { "Content-Type": "application/json" },
-            }
-        );
+        const response = await axios.get(`${url}/api/task/list`, {
+            withCredentials: true,
+            headers: { "Content-Type": "application/json" },
+        });
         if (response.data.success) {
             setList(response.data.data);
         } else {
             toast.error("Error");
         }
-    }
+    };
 
     const removeTodo = async (taskId) => {
         try {
@@ -42,17 +42,16 @@ const List = () => {
         }
     };
 
-
     const handleUpdateClick = (taskId, title, description, deadline, time) => {
         setSelectedTask({ taskId, title, description, deadline, time });
         setShowUpdateForm(true);
-    }
-
+    };
 
     const handleUpdateSubmit = async (taskId, title, description, deadline, time) => {
         try {
-            const response = await axios.put(`${url}/api/task/update/${taskId}`,
-                { title, description, deadline, time }, {
+            const response = await axios.put(`${url}/api/task/update/${taskId}`, {
+                title, description, deadline, time
+            }, {
                 withCredentials: true,
                 headers: { "Content-Type": "application/json" },
             });
@@ -67,18 +66,20 @@ const List = () => {
             console.error("Error updating task:", error);
             toast.error("Error updating task");
         }
-    }
+    };
+
     useEffect(() => {
         fetchList();
     }, []);
+
     return (
         <div className="list add flex-col">
-            <p>task </p>
+            <p>task</p>
             <div className="list-table">
                 <div className="list-table-format title">
                     <b>Title</b>
-                    <b>description</b>
-                    <b>deadline</b>
+                    <b>Description</b>
+                    <b>Deadline</b>
                     <b>Time</b>
                     <b>Delete</b>
                     <b>Update</b>
@@ -91,25 +92,26 @@ const List = () => {
                         <p>{item.deadline}</p>
                         <p>{item.time}</p>
                         <p><img onClick={() => removeTodo(item._id)} src={assets.deleteicon} alt="" /></p>
-                        <button className='list-button' onClick={() => handleUpdateClick(item._id, item.title, item.description, item.deadline)}>Update</button>
+                        <button className='list-button' onClick={() => handleUpdateClick(item._id, item.title, item.description, item.deadline, item.time)}>Update</button>
                         <button className='list-button'>Done</button>
                     </div>
                 ))}
-
             </div>
             {showUpdateForm && selectedTask && (
-                < UpdateForm
-                    taskId={selectedTask.taskId}
-                    title={selectedTask.title}
-                    description={selectedTask.description}
-                    time={selectedTask.time}
-                    deadline={selectedTask.deadline}
-                    onUpdate={handleUpdateSubmit}
-                />
+                <div className="modal">
+                    <UpdateForm
+                        taskId={selectedTask.taskId}
+                        title={selectedTask.title}
+                        description={selectedTask.description}
+                        deadline={selectedTask.deadline}
+                        time={selectedTask.time}
+                        onUpdate={handleUpdateSubmit}
+                        setShowUpdateForm={setShowUpdateForm}
+                    />
+                </div>
             )}
         </div>
-    )
-}
+    );
+};
 
-export default List
-
+export default List;

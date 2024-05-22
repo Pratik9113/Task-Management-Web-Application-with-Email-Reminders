@@ -57,11 +57,11 @@ const removeItem = async (req, res) => {
 const updateItem = async(req,res) =>{
     const {taskId} = req.params;
     const {userId} = req.user;
-    const {title,description,deadline}  = req.body;
+    const {title,description,deadline,time}  = req.body;
     try {
         const updatedItem = await addModel.findOneAndUpdate(
             { _id: taskId, userId: userId },
-            { title, description, deadline }, 
+            { title, description, deadline ,time}, 
             { new: true }
         );
         if(updatedItem){

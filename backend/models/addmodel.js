@@ -13,8 +13,8 @@ const addSchema = new mongoose.Schema({
             }
         }
     },
-    reminderSent: { type: Boolean, default: false },
-    time: {type:String,required : true}
+    time: {type:String,required : true},
+    reminderSent: { type: Boolean, default: false }
 },{timestamps:true})
 
 const addModel =  mongoose.model("add",addSchema)
