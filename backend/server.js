@@ -25,7 +25,7 @@ app.use("/api/task", taskRouter)
 app.get("/",(req,res)=>{
     res.send("working");
 }) 
-// startCron();
+startCron();
 app.listen(port,()=>{
     console.log(`server is running on port ${port}`)
 })

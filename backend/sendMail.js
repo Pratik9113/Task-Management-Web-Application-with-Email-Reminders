@@ -1,17 +1,26 @@
-import nodemailer from "nodemailer"
-import axios  from "axios";
-const  SendmailTransport = async(to, subject, text, deadline) => {
+import nodemailer from "nodemailer";
+
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: '2022.pratik.patil@ves.ac.in',
+    pass: 'qmybzwnnvfnsaeii'
+  }
+});
+
+const SendmailTransport = async (to, subject, text, deadline) => {
     try {
-        const response = await axios.post('https://formspree.io/f/xdoqvejg', {
+        const info = await transporter.sendMail({
+            from: '2022.pratik.patil@ves.ac.in',
             to,
             subject: `Task Reminder: ${subject}`,
             text: `This is a reminder that your task "${subject}" is due at ${deadline}. Description: ${text}`
         });
 
-        console.log('Email sent:', response.data);
+        console.log('Email sent:', info.messageId);
     } catch (error) {
         console.error('Error sending email:', error);
     }
 };
 
-export  {SendmailTransport}
+export { SendmailTransport };

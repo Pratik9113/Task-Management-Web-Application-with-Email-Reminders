@@ -1,5 +1,6 @@
 import addModel from "../models/addmodel.js";
 import mongoose from 'mongoose';
+import userModel from "../models/userModules.js";
 const { ObjectId } = mongoose.Types;
 
 const addTask = async(req,res) =>{
@@ -53,6 +54,18 @@ const removeItem = async (req, res) => {
     }
 };
 
+const pendingList = async(req, res) => {
+    const { userId } = req.user;
+    const now = new Date();
+    try {
+        const pendingTasks = await addModel.find({ userId, deadline: { $lt: now } });
+        return res.json({ success: true, data: pendingTasks });
+    } catch (error) {
+        console.log("Error in fetching pending tasks:", error);
+        return res.status(500).json({ success: false, message: "Internal server error" });
+    }
+}
+
 
 const updateItem = async(req,res) =>{
     const {taskId} = req.params;
@@ -77,4 +90,4 @@ const updateItem = async(req,res) =>{
     }
 
 }
-export {addTask,listItem, removeItem , updateItem};
+export {addTask,listItem, removeItem , updateItem , pendingList};
