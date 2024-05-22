@@ -1,0 +1,75 @@
+.add {
+    /* Adjust height to fit viewport */
+    background-color: #f5f5f5; /* Add background color */
+}
+
+.add-container {
+    background: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    border-radius: 10px;
+    width: 100%;  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+.add-form {
+    display: block;
+    min-width: 450px;
+}
+.add-title,
+.add-description,
+.add-deadline,
+.add-time {
+    margin-bottom: 10px; /* Increase margin for better separation */
+}
+
+.add-title p,
+.add-description p,
+.add-deadline p,
+.add-time p {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.add-title input,
+.add-description textarea,
+.add-deadline input,
+.add-time input {
+    width: calc(100% - 16px); /* Adjust width for padding */
+    padding: 10px; /* Increase padding for better input appearance */
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.add-title input:focus,
+.add-description textarea:focus,
+.add-deadline input:focus,
+.add-time input:focus {
+    border-color: #7b77f0;
+}
+
+.add-description textarea {
+    resize: vertical;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px; /* Increase padding for better button appearance */
+    border: none;
+    border-radius: 4px;
+    background-color: #7b77f0;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #5a54d7;
+}

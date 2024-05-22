@@ -21,6 +21,7 @@
     justify-content:space-around;
     align-items: center;
     color: black;
+    font-weight: 800;
 }
 .update-text{
     font-weight: 500;
@@ -29,7 +30,7 @@
 .update-input {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 .update-input input {
@@ -40,6 +41,7 @@
 }
 
 .update-container button {
+    margin-top: 25px;
     border: none;
     padding: 10px;
     border-radius: 4px;

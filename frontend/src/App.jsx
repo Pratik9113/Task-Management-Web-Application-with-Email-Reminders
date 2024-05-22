@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import Add from './pages/Add/Add';
 import Sidebar from './components/Sidebar/Sidebar';
 import List from './pages/List/List';
+import Pending from './pages/Pending/Pending';
 function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [showUpdate, setUpdateList] = useState(false);
@@ -22,6 +23,7 @@ function App() {
           <Routes>
             <Route path='/add' element={<Add />}></Route>
             <Route path='/list' element={<List setUpdateList={setUpdateList} />}></Route>
+            <Route path='/pending' element={<Pending />} ></Route>
           </Routes>
         </div>
       </div>

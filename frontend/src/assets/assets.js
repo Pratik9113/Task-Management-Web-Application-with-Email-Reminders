@@ -4,11 +4,13 @@ import logout from './logout.png'
 import cross_icon from './cross_icon.png'
 import jobimage from './jobimage.jpg'
 import deleteicon from './deleteicon.png'
+import todoitem from './todoitem.png'
 export const assets = {
     job_craft,
     profile_icon,
     logout,
     cross_icon,
     jobimage,
-    deleteicon
+    deleteicon,
+    todoitem
 }
