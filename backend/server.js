@@ -6,6 +6,8 @@ import userRouter from "./routes/userRoute.js";
 import taskRouter from "./routes/taskRoute.js";
 import 'dotenv/config'
 import startCron from "./node-cron.js";
+import path from "path";
+const __dirname = path.resolve()
 const app = express();
 const port = 4000
 const corsOptions = {
@@ -22,6 +24,11 @@ connectDB();
 
 app.use("/api/user" , userRouter)
 app.use("/api/task", taskRouter)
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname, 'client' ,'dist','index.html'))
+})
+
+app.use(express.static(path.join(__dirname, '/client/dist')));
 app.get("/",(req,res)=>{
     res.send("working");
 }) 

@@ -17,8 +17,8 @@ const Navbar = ({ setShowLogin }) => {
       <Link to='/'><img className='logo' src={assets.job_craft} alt="" /></Link>
       <ul className='navbar-menu'>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/how-to-use">How to use ??</Link></li>
+        <li><Link to="/list">List</Link></li>
+        <li><Link to="/pending">Pending-Task</Link></li>
       </ul>
 
       <div className="navbar-right-section">
@@ -26,7 +26,7 @@ const Navbar = ({ setShowLogin }) => {
           <div className="navbar-profile">
             <img src={assets.profile_icon} alt="" />
             <ul className='dropdown'>
-              <li><img src={assets.job_craft} alt='' /><p>order</p></li>
+              {/* <li><img src={assets.job_craft} alt='' /><p>order</p></li> */}
               <hr />
               <li onClick={logout}><img src={assets.logout} alt="" /><p>Logout</p></li>
             </ul>

@@ -8,6 +8,7 @@ import Add from './pages/Add/Add';
 import Sidebar from './components/Sidebar/Sidebar';
 import List from './pages/List/List';
 import Pending from './pages/Pending/Pending';
+import Next from './pages/Next/Next';
 function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [showUpdate, setUpdateList] = useState(false);
@@ -18,14 +19,15 @@ function App() {
         <ToastContainer />
         <Navbar setShowLogin={setShowLogin} />
         <hr />
-        <div className="app-content">
+        {showLogin ? <></> : <div className="app-content">
           <Sidebar />
           <Routes>
             <Route path='/add' element={<Add />}></Route>
             <Route path='/list' element={<List setUpdateList={setUpdateList} />}></Route>
             <Route path='/pending' element={<Pending />} ></Route>
+            <Route path='/next' element={<Next />}></Route>
           </Routes>
-        </div>
+        </div>}
       </div>
     </>
   )

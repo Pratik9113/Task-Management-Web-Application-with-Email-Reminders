@@ -54,18 +54,46 @@ const removeItem = async (req, res) => {
     }
 };
 
-const pendingList = async(req, res) => {
+const pendingList = async (req, res) => {
     const { userId } = req.user;
     const now = new Date();
+    const currDate = now.toISOString().split('T')[0]
+    // const oneDayAgo = new Date(now);
+    // oneDayAgo.setDate(now.getDate() - 1);
+
     try {
-        const pendingTasks = await addModel.find({ userId, deadline: { $lt: now } });
-        return res.json({ success: true, data: pendingTasks });
+    
+        const crossedDeadlineTasks = await addModel.find({
+            userId,
+            deadline: { $lt: currDate}
+        });
+
+        return res.json({ success: true, data: crossedDeadlineTasks });
     } catch (error) {
-        console.log("Error in fetching pending tasks:", error);
+        console.log("Error in fetching tasks that crossed the deadline:", error);
         return res.status(500).json({ success: false, message: "Internal server error" });
     }
 }
 
+const getNextSevenDaysTasks = async (req, res) => {
+    const { userId } = req.user;
+    const today = new Date();
+    const nextSevenDays = new Date(today);
+    nextSevenDays.setDate(today.getDate() + 7);
+    try {
+        const tasks = await addModel.find({
+            userId,
+            deadline: {
+                $gte: today.toISOString().split('T')[0],
+                $lte: nextSevenDays.toISOString().split('T')[0]
+            }
+        });
+        return res.json({ success: true, data: tasks });
+    } catch (error) {
+        console.log("Error in fetching next 7 days tasks:", error);
+        return res.status(500).json({ success: false, message: "Internal server error" });
+    }
+};
 
 const updateItem = async(req,res) =>{
     const {taskId} = req.params;
@@ -90,4 +118,4 @@ const updateItem = async(req,res) =>{
     }
 
 }
-export {addTask,listItem, removeItem , updateItem , pendingList};
+export {addTask,listItem, removeItem , updateItem , pendingList,getNextSevenDaysTasks};
