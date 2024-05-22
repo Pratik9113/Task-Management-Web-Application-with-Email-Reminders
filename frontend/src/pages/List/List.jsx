@@ -43,16 +43,16 @@ const List = () => {
     };
 
 
-    const handleUpdateClick = (taskId, title, description, deadline) => {
-        setSelectedTask({ taskId, title, description, deadline });
+    const handleUpdateClick = (taskId, title, description, deadline, time) => {
+        setSelectedTask({ taskId, title, description, deadline, time });
         setShowUpdateForm(true);
     }
 
 
-    const handleUpdateSubmit = async (taskId, title, description, deadline) => {
+    const handleUpdateSubmit = async (taskId, title, description, deadline, time) => {
         try {
             const response = await axios.put(`${url}/api/task/update/${taskId}`,
-                { title, description, deadline }, {
+                { title, description, deadline, time }, {
                 withCredentials: true,
                 headers: { "Content-Type": "application/json" },
             });
@@ -79,16 +79,20 @@ const List = () => {
                     <b>Title</b>
                     <b>description</b>
                     <b>deadline</b>
+                    <b>Time</b>
                     <b>Delete</b>
-
+                    <b>Update</b>
+                    <b>Done</b>
                 </div>
                 {list.length > 0 && list.map((item, index) => (
                     <div key={index} className="list-table-format">
                         <p>{item.title}</p>
                         <p>{item.description}</p>
                         <p>{item.deadline}</p>
+                        <p>{item.time}</p>
                         <p><img onClick={() => removeTodo(item._id)} src={assets.deleteicon} alt="" /></p>
                         <button className='list-button' onClick={() => handleUpdateClick(item._id, item.title, item.description, item.deadline)}>Update</button>
+                        <button className='list-button'>Done</button>
                     </div>
                 ))}
 
@@ -98,6 +102,7 @@ const List = () => {
                     taskId={selectedTask.taskId}
                     title={selectedTask.title}
                     description={selectedTask.description}
+                    time={selectedTask.time}
                     deadline={selectedTask.deadline}
                     onUpdate={handleUpdateSubmit}
                 />

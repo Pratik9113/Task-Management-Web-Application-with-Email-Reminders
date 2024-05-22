@@ -3,9 +3,9 @@ import mongoose from 'mongoose';
 const { ObjectId } = mongoose.Types;
 
 const addTask = async(req,res) =>{
-    const { title, description, deadline } = req.body;
+    const { title, description, deadline, time } = req.body;
     const {userId} = req.user;
-    if (!title || !description || !deadline) {
+    if (!title || !description || !deadline || !time) {
         return res.status(400).json({ success: false, message: "Missing required fields" });
     }
     try {
@@ -13,7 +13,8 @@ const addTask = async(req,res) =>{
             userId,
             title,
             description,
-            deadline
+            deadline,
+            time
         });
         const saved = await newTask.save();
         return res.status(200).json({ success: true, message: "Task added successfully", data: saved });
