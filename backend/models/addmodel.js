@@ -13,6 +13,7 @@ const addSchema = new mongoose.Schema({
             }
         }
     },
+    reminderSent: { type: Boolean, default: false },
     time: {type:String,required : true}
 },{timestamps:true})
 

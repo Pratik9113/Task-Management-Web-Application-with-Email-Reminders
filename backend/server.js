@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import userRouter from "./routes/userRoute.js";
 import taskRouter from "./routes/taskRoute.js";
 import 'dotenv/config'
+import startCron from "./node-cron.js";
 const app = express();
 const port = 4000
 const corsOptions = {
@@ -23,8 +24,8 @@ app.use("/api/user" , userRouter)
 app.use("/api/task", taskRouter)
 app.get("/",(req,res)=>{
     res.send("working");
-})
-
+}) 
+startCron();
 app.listen(port,()=>{
     console.log(`server is running on port ${port}`)
 })
