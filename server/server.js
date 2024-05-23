@@ -8,8 +8,19 @@ import 'dotenv/config'
 import startCron from "./node-cron.js";
 const app = express();
 const port =  4000;
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://task-management-web-application-with-email-reminders-lm64.vercel.app'
+];
+
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: (origin, callback) => {
+        if (allowedOrigins.includes(origin) || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
 };
 app.use(express.json());
