@@ -4,14 +4,14 @@ import { assets } from '../../assets/assets';
 import axios from 'axios';
 import { toast } from 'react-toastify'; // Added import for toast
 import './Pending.css';
+import { baseUrl } from '../../Urls';
 
 const Pending = () => {
   const [listo, setListo] = useState([]);
-  const { url } = useContext(StoreContext);
 
   const fetchList = async () => {
     try {
-      const response = await axios.get(`${url}/api/task/pending`, {
+      const response = await axios.get(`${baseUrl}/api/task/pending`, {
         withCredentials: true,
         headers: { "Content-Type": "application/json" },
       });

@@ -5,10 +5,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext';
 import axios from "axios"
+import { baseUrl } from '../../Urls';
 
 const Login_Signup = ({ setShowLogin }) => {
     const navigate = useNavigate();
-    const { url, setToken } = useContext(StoreContext); // Add setToken here
+    const { setToken } = useContext(StoreContext); // Add setToken here
     const [currState, setCurrState] = useState("Login");
     const [data, setData] = useState({
         name: "",
@@ -24,7 +25,7 @@ const Login_Signup = ({ setShowLogin }) => {
 
     const onLogin = async (event) => {
         event.preventDefault();
-        let newUrl = url;
+        let newUrl = `${baseUrl}`;
         if (currState === 'Login') {
             newUrl += "/api/user/login";
         } else {

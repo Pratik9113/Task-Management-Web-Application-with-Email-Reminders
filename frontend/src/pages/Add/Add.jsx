@@ -5,9 +5,9 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 import { StoreContext } from '../../context/StoreContext';
 import { assets } from '../../assets/assets';
+import { baseUrl } from '../../Urls';
 
 const Add = () => {
-    const { url } = useContext(StoreContext);
     const token = localStorage.getItem('token');
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
@@ -39,7 +39,7 @@ const Add = () => {
             time: formatTime(data.time)
         };
 
-        const newUrl = `${url}/api/task/add`;
+        const newUrl = `${baseUrl}/api/task/add`;
 
         try {
             const response = await axios.post(newUrl, formattedData, {

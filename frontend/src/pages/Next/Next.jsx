@@ -3,13 +3,13 @@ import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
 import { toast } from 'react-toastify'; // Added import for toast
 import '../Pending/Pending.css';
+import { baseUrl } from '../../Urls';
 const Next = () => {
     const [listoo, setListoo] = useState([]);
-    const { url } = useContext(StoreContext);
 
     const fetchList = async () => {
         try {
-            const response = await axios.get(`${url}/api/task/next`, {
+            const response = await axios.get(`${baseUrl}/api/task/next`, {
                 withCredentials: true,
                 headers: { "Content-Type": "application/json" },
             });

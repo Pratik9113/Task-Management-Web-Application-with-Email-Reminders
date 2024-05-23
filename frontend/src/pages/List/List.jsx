@@ -5,15 +5,15 @@ import { toast } from 'react-toastify';
 import { StoreContext } from '../../context/StoreContext';
 import { assets } from '../../assets/assets';
 import UpdateForm from '../../components/UpdateForm/UpdateForm';
+import { baseUrl } from '../../Urls';
 
 const List = () => {
     const [list, setList] = useState([]);
     const [showUpdateForm, setShowUpdateForm] = useState(false);
     const [selectedTask, setSelectedTask] = useState(null);
-    const { url } = useContext(StoreContext);
 
     const fetchList = async () => {
-        const response = await axios.get(`${url}/api/task/list`, {
+        const response = await axios.get(`${baseUrl}/api/task/list`, {
             withCredentials: true,
             headers: { "Content-Type": "application/json" },
         });
@@ -26,7 +26,7 @@ const List = () => {
 
     const removeTodo = async (taskId) => {
         try {
-            const response = await axios.delete(`${url}/api/task/remove/${taskId}`, {
+            const response = await axios.delete(`${baseUrl}/api/task/remove/${taskId}`, {
                 withCredentials: true,
                 headers: { "Content-Type": "application/json" },
             });
@@ -49,7 +49,7 @@ const List = () => {
 
     const handleUpdateSubmit = async (taskId, title, description, deadline, time) => {
         try {
-            const response = await axios.put(`${url}/api/task/update/${taskId}`, {
+            const response = await axios.put(`${baseUrl}/api/task/update/${taskId}`, {
                 title, description, deadline, time
             }, {
                 withCredentials: true,
