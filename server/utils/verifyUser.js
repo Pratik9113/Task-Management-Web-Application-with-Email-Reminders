@@ -6,7 +6,7 @@ const verifyUser = (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(req.cookies.access_token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(req.cookies.access_token, process.env.SECRET);
     req.user = { id: decoded.id };
     next();
   } catch (error) {
