@@ -1,44 +1,26 @@
 .list{
-    display: block;
-    justify-content: center;
     background-color: white;
     margin: 40px;
-}
-.list-table-format {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1.5fr 1fr 1fr 1fr 1fr;
     align-items: center;
+}
+.list-task-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 25px;
+}
+.list-items-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 10px;
-    padding: 12px 15px;
-    border: 1px solid #c6c3c3;
-    font-size: 13px;
 }
 
-.list-table-format.title {
-    align-items: center;
-    background-color: white;
+.list-items-container > div {
+    width: calc(33.33% - 10px);
 }
 
-.list-table-format img {
-    width: 50px;
-    border: 2px solid black;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.list-table-format .cursor {
-    cursor: pointer;
-}
-
-.list-button {
-    background: transparent;
-    font-size: 16px;
-    color: rgb(0, 0, 0);
-    border: 1px solid palevioletred;
-    padding: 10px 20px;
-    border-radius: 50px;
-    cursor: pointer;
-}
 
 .modal {
     position: fixed;

@@ -1,6 +1,4 @@
-/* General container for the pending tasks */
 .pending-tasks-container {
-    display: flex;
     justify-content: center;
     background-color: #f9f9f9;
     padding: 20px;
@@ -9,17 +7,25 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 800px;
   }
-  
-  /* Table styles */
+  .pending-task{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 25px;
+}
+  .next-desc{
+    width: 200px; 
+    word-wrap: break-word;
+  }
   .pending-table {
     width: 100%;
     border-collapse: collapse;
   }
-  
-  /* Header styles */
   .pending-table-header {
     display: grid;
-    grid-template-columns: 2fr 2fr 2fr 2fr;
+    align-items: center;
+    grid-template-columns: 3fr 3fr 2fr 1fr;
     gap: 10px;
     padding: 12px 15px;
     background-color: #007bff;
@@ -28,8 +34,6 @@
     font-weight: bold;
     text-align: left;
   }
-  
-  /* Row styles */
   .pending-table-row {
     display: grid;
     grid-template-columns: 1fr 2fr 1.5fr 1fr;
@@ -47,8 +51,6 @@
     margin: 0;
     font-size: 14px;
   }
-  
-  /* Message for no pending tasks */
   .pending-tasks-container p {
     text-align: center;
     font-size: 16px;

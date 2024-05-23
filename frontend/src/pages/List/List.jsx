@@ -6,6 +6,7 @@ import { StoreContext } from '../../context/StoreContext';
 import { assets } from '../../assets/assets';
 import UpdateForm from '../../components/UpdateForm/UpdateForm';
 import { baseUrl } from '../../Urls';
+import Listitem from './Listitem';
 
 const List = () => {
     const [list, setList] = useState([]);
@@ -74,27 +75,10 @@ const List = () => {
 
     return (
         <div className="list add flex-col">
-            <p>task</p>
-            <div className="list-table">
-                <div className="list-table-format title">
-                    <b>Title</b>
-                    <b>Description</b>
-                    <b>Deadline</b>
-                    <b>Time</b>
-                    <b>Delete</b>
-                    <b>Update</b>
-                    <b>Done</b>
-                </div>
+            <p className='list-task-text'>Here is your Task to complete </p>
+            <div className="list-items-container">
                 {list.length > 0 && list.map((item, index) => (
-                    <div key={index} className="list-table-format">
-                        <p>{item.title}</p>
-                        <p>{item.description}</p>
-                        <p>{item.deadline}</p>
-                        <p>{item.time}</p>
-                        <p><img onClick={() => removeTodo(item._id)} src={assets.deleteicon} alt="" /></p>
-                        <button className='list-button' onClick={() => handleUpdateClick(item._id, item.title, item.description, item.deadline, item.time)}>Update</button>
-                        <button className='list-button'>Done</button>
-                    </div>
+                    <Listitem key={index} id={item._id} title={item.title} description={item.description} deadline={item.deadline} time={item.time} handleUpdateClick={handleUpdateClick} removeTodo={removeTodo} />
                 ))}
             </div>
             {showUpdateForm && selectedTask && (

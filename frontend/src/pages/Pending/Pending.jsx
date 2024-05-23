@@ -31,28 +31,31 @@ const Pending = () => {
   }, []);
 
   return (
-    <div className="pending-tasks-container">
-      <div className="pending-table">
-        <div className="pending-table-header">
-          <b>Title</b>
-          <b>Description</b>
-          <b>Deadline</b>
-          <b>Time</b>
+    <>
+      <div className="pending-tasks-container">
+        <p className='pending-task'>Here is your pending task </p>
+        <div className="pending-table">
+          <div className="pending-table-header">
+            <b>Title</b>
+            <b>Description</b>
+            <b>Deadline</b>
+            <b>Time</b>
+          </div>
+          {listo.length > 0 ? (
+            listo.map((item, index) => (
+              <div key={index} className="pending-table-row">
+                <p>{item.title}</p>
+                <p className='next-desc'>{item.description}</p>
+                <p>{item.deadline}</p>
+                <p>{item.time}</p>
+              </div>
+            ))
+          ) : (
+            <p>No pending tasks</p>
+          )}
         </div>
-        {listo.length > 0 ? (
-          listo.map((item, index) => (
-            <div key={index} className="pending-table-row">
-              <p>{item.title}</p>
-              <p>{item.description}</p>
-              <p>{item.deadline}</p>
-              <p>{item.time}</p>
-            </div>
-          ))
-        ) : (
-          <p>No pending tasks</p>
-        )}
       </div>
-    </div>
+    </>
   );
 };
 

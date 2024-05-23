@@ -29,6 +29,7 @@ const Next = () => {
     }, []);
     return (
         <div className="pending-tasks-container">
+            <p className='pending-task'>Here is your Next Week Task </p>
             <div className="pending-table">
                 <div className="pending-table-header">
                     <b>Title</b>
@@ -40,7 +41,7 @@ const Next = () => {
                     listoo.map((item, index) => (
                         <div key={index} className="pending-table-row">
                             <p>{item.title}</p>
-                            <p>{item.description}</p>
+                            <p className='next-desc'>{item.description}</p>
                             <p>{item.deadline}</p>
                             <p>{item.time}</p>
                         </div>

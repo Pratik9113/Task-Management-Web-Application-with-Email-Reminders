@@ -25,9 +25,9 @@ const UpdateForm = ({ taskId, title, description, deadline, time, onUpdate, setS
                     <label className="update-text">Description:</label>
                     <input type="text" value={updatedDescription} onChange={(e) => setUpdatedDescription(e.target.value)} />
                     <label className="update-text">Deadline:</label>
-                    <input type="text" value={updatedDeadline} onChange={(e) => setUpdatedDeadline(e.target.value)} />
+                    <input type="date" value={updatedDeadline} onChange={(e) => setUpdatedDeadline(e.target.value)} />
                     <label className="update-text">Time:</label>
-                    <input type="text" value={updatedTime} onChange={(e) => setUpdatedTime(e.target.value)} />
+                    <input type="time" value={updatedTime} onChange={(e) => setUpdatedTime(e.target.value)} />
                 </div>
                 <button type="submit">Update Task</button>
             </form>
