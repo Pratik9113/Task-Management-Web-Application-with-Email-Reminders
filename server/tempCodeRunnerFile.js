@@ -7,7 +7,7 @@ import taskRouter from "./routes/taskRoute.js";
 import 'dotenv/config'
 import startCron from "./node-cron.js";
 const app = express();
-const port =  4000;
+const port = process.env.PORT || 4000;
 const corsOptions = {
     origin: 'http://localhost:5173',
     credentials: true,
