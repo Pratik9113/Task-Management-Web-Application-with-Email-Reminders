@@ -12,10 +12,10 @@ const loginUser = async (req, res) => {
             return res.status(404).json({ success: false, message: "User does not exist" });
         }
 
-        // const isMatch = await bcrypt.compare(password, user.password);
-        // if (!isMatch) {
-        //     return res.status(401).json({ success: false, message: "Invalid password" });
-        // }
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ success: false, message: "Invalid password" });
+        }
 
         const token = jwt.sign({ userId: user._id }, process.env.SECRET, {
             expiresIn: '12h'
@@ -51,13 +51,13 @@ const registerUser = async (req, res) => {
             return res.status(400).json({ success: false, message: "Please enter a strong password (at least 8 characters)" });
         }
 
-        // const salt = await bcrypt.genSalt(10);
-        // const hashedPassword = await bcrypt.hash(password, salt);
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
 
         const newUser = new userModel({
             name,
             email,
-            password,
+            password : hashedPassword,
         });
 
         const user = await newUser.save();
