@@ -33,3 +33,11 @@
     background-color: #fff0ed;
     border-color: #000;
 }
+
+
+
+@media (max-width: 850px) {
+    .sidebar{
+        display: none;
+    }
+}

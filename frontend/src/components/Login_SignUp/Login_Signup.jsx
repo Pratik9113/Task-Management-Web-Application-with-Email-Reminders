@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import './Login_Signup.css'
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext';
 import axios from "axios"
@@ -42,6 +42,7 @@ const Login_Signup = ({ setShowLogin }) => {
                 setToken(response.data.token); // Set the token here
                 localStorage.setItem("token", response.data.token); // Store token in localStorage
                 setShowLogin(false);
+                toast.success(response.data.success)
             } else {
                 alert(response.data.error);
             }
@@ -55,7 +56,7 @@ const Login_Signup = ({ setShowLogin }) => {
             <form onSubmit={onLogin} className='login-container'>
                 <div className="login-title">
                     <h2>{currState}</h2>
-                    <img onClick={() => setShowLogin(false)} src={assets.cross_icon} alt="" />
+                    <img className='login-click' onClick={() => setShowLogin(false)} src={assets.cross_icon} alt="" />
                 </div>
                 <div className="login-input">
                     {currState === "Login" ? null : <input name="name" onChange={onChangeHandler} value={data.name} type='text' placeholder='Your Name : ' required />}
@@ -64,8 +65,8 @@ const Login_Signup = ({ setShowLogin }) => {
                 </div>
                 <button type='submit'> {currState === "Sign Up" ? "create an account " : "Login"}</button>
                 {currState === "Login" ?
-                    <p>create an account <span onClick={() => setCurrState("Sign Up")}> Click here </span></p> :
-                    <p>already have an account  ? <span onClick={() => setCurrState("Login")}>Login in here </span></p>
+                    <p>create an account <span className='login-click' onClick={() => setCurrState("Sign Up")}> Click here </span></p> :
+                    <p>already have an account  ? <span className='login-click' onClick={() => setCurrState("Login")}>Login in here </span></p>
                 }
             </form>
         </div>

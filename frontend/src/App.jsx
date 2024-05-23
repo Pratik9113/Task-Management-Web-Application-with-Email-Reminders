@@ -14,9 +14,9 @@ function App() {
   const [showUpdate, setUpdateList] = useState(false);
   return (
     <>
+      <ToastContainer />
       {showLogin ? <Login_Signup setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
-        <ToastContainer />
         <Navbar setShowLogin={setShowLogin} />
         <hr />
         {showLogin ? <></> : <div className="app-content">

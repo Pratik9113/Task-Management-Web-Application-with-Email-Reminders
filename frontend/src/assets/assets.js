@@ -5,6 +5,12 @@ import cross_icon from './cross_icon.png'
 import jobimage from './jobimage.jpg'
 import deleteicon from './deleteicon.png'
 import todoitem from './todoitem.png'
+import pending from './pending.png'
+import thisWeek from './thisWeek.png'
+import List from './List.png'
+import addtodo from './addtodo.png'
+import taskm from './taskm.png'
+import todo_image from './todo_image.png'
 export const assets = {
     job_craft,
     profile_icon,
@@ -12,5 +18,11 @@ export const assets = {
     cross_icon,
     jobimage,
     deleteicon,
-    todoitem
+    todoitem,
+    pending,
+    thisWeek,
+    List,
+    addtodo,
+    taskm,
+    todo_image
 }

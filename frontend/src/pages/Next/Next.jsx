@@ -47,7 +47,7 @@ const Next = () => {
                         </div>
                     ))
                 ) : (
-                    <p>No pending tasks</p>
+                    <p>No Next Week Tasks</p>
                 )}
             </div>
         </div>

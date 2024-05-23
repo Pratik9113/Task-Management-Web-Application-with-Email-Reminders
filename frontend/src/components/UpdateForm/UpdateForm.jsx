@@ -19,7 +19,7 @@ const UpdateForm = ({ taskId, title, description, deadline, time, onUpdate, setS
                 <div className="update-title">
                     <label className="update-text">Title:</label>
                     <input type="text" value={updatedTitle} onChange={(e) => setUpdatedTitle(e.target.value)} />
-                    <img onClick={() => setShowUpdateForm(false)} src={assets.cross_icon} alt="" />
+                    <img className='update-click' onClick={() => setShowUpdateForm(false)} src={assets.cross_icon} alt="" />
                 </div>
                 <div className="update-input">
                     <label className="update-text">Description:</label>

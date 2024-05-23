@@ -6,7 +6,9 @@
     background-color: #00000090;
     display: grid;
 }
-
+.login-click{
+    cursor: pointer;
+}
 .login-container{
     place-self: center;
     width: max(23vw,330px);
@@ -47,4 +49,8 @@
     background-color: red;
     font-size: 15px;
     cursor: pointer;
+}
+
+.login span{
+    color: red;
 }

@@ -1,38 +1,61 @@
-import React, { useContext } from 'react';
-import { assets } from '../../assets/assets';
-import './Navbar.css';
+import React, { useContext, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
+import { FaTimes, FaBars } from 'react-icons/fa';
+import { assets } from '../../assets/assets';
+import './Navbar.css';
 
 const Navbar = ({ setShowLogin }) => {
   const { token, setToken } = useContext(StoreContext);
   const navigate = useNavigate();
-  const logout = () => {
-    localStorage.removeItem("token")
-    setToken("");
-    navigate("/")
-  }
-  return (
-    <div className="navbar">
-      <Link to='/'><img className='logo' src={assets.job_craft} alt="" /></Link>
-      <ul className='navbar-menu'>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/list">List</Link></li>
-        <li><Link to="/pending">Pending-Task</Link></li>
-      </ul>
+  const navRef = useRef();
 
-      <div className="navbar-right-section">
-        {!token ? <button onClick={() => setShowLogin(true)}>SignIn</button> :
-          <div className="navbar-profile">
-            <img src={assets.profile_icon} alt="" />
-            <ul className='dropdown'>
-              {/* <li><img src={assets.job_craft} alt='' /><p>order</p></li> */}
-              <hr />
-              <li onClick={logout}><img src={assets.logout} alt="" /><p>Logout</p></li>
-            </ul>
-          </div>}
+  const showNavbar = () => {
+    if (navRef.current) {
+      navRef.current.classList.toggle("responsive_nav");
+      console.log("Navbar toggled"); // Debugging log
+    } else {
+      console.log("navRef is null"); // Debugging log
+    }
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken("");
+    navigate("/");
+  };
+
+  return (
+    <header>
+      <div className="navbar">
+        <Link to='/'><img className='logo' src={assets.todo_image} alt="Logo" /></Link>
+        <nav ref={navRef} className="navbar-menu">
+          <li><Link onClick={showNavbar} to="/">Home</Link></li>
+          <li><Link onClick={showNavbar} to="/add">Add</Link></li>
+          <li><Link onClick={showNavbar} to="/next">This-Week</Link></li>
+          <li><Link onClick={showNavbar} to="/list">List</Link></li>
+          <li><Link onClick={showNavbar} to="/pending">Pending-Task</Link></li>
+          <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+            <FaTimes />
+          </button>
+        </nav>
+        <button className="nav-btn" onClick={showNavbar}>
+          <FaBars />
+        </button>
+        <div className="navbar-right-section">
+          {!token ? (
+            <button onClick={() => setShowLogin(true)}>Sign In</button>
+          ) : (
+            <div className="navbar-profile">
+              <img src={assets.profile_icon} alt="Profile Icon" />
+              <ul className='dropdown'>
+                <li onClick={logout}><img src={assets.logout} alt="Logout Icon" /><p>Logout</p></li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </header>
   );
 }
 

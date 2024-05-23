@@ -5,7 +5,9 @@
     height: 100%;
     width: 100%;
 }
-
+.update-click{
+    cursor: pointer;
+}
 .update-container {
     background: white;
     padding: 20px;
