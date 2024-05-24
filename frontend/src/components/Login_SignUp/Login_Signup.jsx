@@ -39,12 +39,12 @@ const Login_Signup = ({ setShowLogin }) => {
             });
 
             if (response.data.success) {
+                toast.success(response.data.message)
                 setToken(response.data.token); // Set the token here
                 localStorage.setItem("token", response.data.token); // Store token in localStorage
                 setShowLogin(false);
-                toast.success(response.data.success)
             } else {
-                alert(response.data.error);
+                toast.error(response.data.message);
             }
         } catch (error) {
             console.error('Error occurred:', error);
