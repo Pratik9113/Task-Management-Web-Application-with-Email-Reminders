@@ -47,7 +47,7 @@ const Login_Signup = ({ setShowLogin }) => {
                 toast.error(response.data.message);
             }
         } catch (error) {
-            console.error('Error occurred:', error);
+            toast.error("User Not Register or wrong credendials")
         }
     }
 
