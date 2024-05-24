@@ -79,3 +79,11 @@ button[type="submit"]:hover {
         display: none;
     }
 }
+
+
+@media (max-width: 5500px) {
+.add-form {
+    display: block;
+    min-width: 350px;
+}
+}
